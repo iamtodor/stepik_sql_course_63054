@@ -637,18 +637,19 @@ where subject.subject_id=2 and attempt_id=(select max(attempt_id) from attempt)
 order by rand()
 limit 3
 
-3.2.4 it doesn't work at this moment. if you solve it, please make a pull request
-update attempt
+3.2.4
+update attempt,
 (
     select student.student_id, subject.subject_id, date_attempt, round(sum(is_correct)/3*100) as result from answer
     join testing on testing.answer_id=answer.answer_id
     join attempt on attempt.attempt_id=testing.attempt_id
     join subject on subject.subject_id=attempt.subject_id
     join student on student.student_id=attempt.student_id
+    where attempt.attempt_id=8
     group by student.student_id, subject.subject_id, date_attempt
 ) as tmp
 set attempt.result=tmp.result
-where attempt_id=8
+where attempt_id=8;
 
 3.2.5
 delete from attempt
