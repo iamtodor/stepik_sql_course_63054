@@ -237,9 +237,12 @@ create table fine(fine_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30), numb
                  violation VARCHAR(50), sum_fine DECIMAL(8,2), date_violation DATE, date_payment DATE)
                  
 1.7.3
-insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) values(6, "Баранов П.Е.", 'Р523ВТ', 'Превышение скорости(от 40 до 60)', Null, '2020-02-14', Null);
-insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) values(7, "Абрамова К.А.", 'О111АВ', 'Проезд на запрещающий сигнал', Null, '2020-02-23', Null);
-insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) values(8, "Яковлев Г.Р.", 'Т330ТТ', 'Проезд на запрещающий сигнал', Null, '2020-03-03', Null);
+insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) 
+           values(6, "Баранов П.Е.", 'Р523ВТ', 'Превышение скорости(от 40 до 60)', Null, '2020-02-14', Null);
+insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) 
+           values(7, "Абрамова К.А.", 'О111АВ', 'Проезд на запрещающий сигнал', Null, '2020-02-23', Null);
+insert into fine(fine_id, name, number_plate, violation, sum_fine, date_violation, date_payment) 
+           values(8, "Яковлев Г.Р.", 'Т330ТТ', 'Проезд на запрещающий сигнал', Null, '2020-03-03', Null);
 
 1.7.4
 Update fine as f, traffic_violation as tv
@@ -260,7 +263,10 @@ group by name, number_plate, violation
 having count(*) > 1
 order by name) as new_fine
 set fine.sum_fine=fine.sum_fine*2
-where date_payment is null and new_fine.name=fine.name and new_fine.number_plate=fine.number_plate and new_fine.violation=fine.violation
+where date_payment is null and 
+           new_fine.name=fine.name and 
+           new_fine.number_plate=fine.number_plate and 
+           new_fine.violation=fine.violation
 
 1.7.7
 update fine, payment
@@ -662,7 +668,13 @@ join subject on subject.subject_id=program_subject.subject_id
 where name_subject='Информатика'
 
 3.3.4
-select name_subject, count(*) as Количество, max(result) as Максимум, min(result) as Минимум, round(avg(result), 1) as Среднее from subject
+select 
+  name_subject, 
+  count(*) as Количество, 
+  max(result) as Максимум, 
+  min(result) as Минимум, 
+  round(avg(result), 1) as Среднее 
+from subject
 join enrollee_subject on enrollee_subject.subject_id=subject.subject_id
 group by name_subject
 order by name_subject
@@ -685,7 +697,11 @@ left join achievement a on a.achievement_id=ev.achievement_id
 group by name_enrollee
 
 3.3.8
-select name_department, p.name_program, plan, count(*) as Количество, round(count(*)/plan, 2) as Конкурс from program_enrollee pe
+select 
+  name_department, 
+  p.name_program, plan, 
+  count(*) as Количество, round(count(*)/plan, 2) as Конкурс 
+from program_enrollee pe
 join program p on pe.program_id=p.program_id
 join department d on d.department_id=p.department_id
 group by name_department, p.name_program, plan
