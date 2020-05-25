@@ -467,7 +467,10 @@ join step on step.step_id=buy_step.step_id
 where date_step_beg is not null and date_step_end is null
 
 2.4.11
-select buy.buy_id, datediff(buy_step.date_step_end, buy_step.date_step_beg) as Количество_дней, if(city.days_delivery-datediff(buy_step.date_step_end, buy_step.date_step_beg)>=0, 0, datediff(buy_step.date_step_end, buy_step.date_step_beg) - city.days_delivery) as Опоздание  from city
+select buy.buy_id, 
+  datediff(buy_step.date_step_end, buy_step.date_step_beg) as Количество_дней, 
+  if(city.days_delivery-datediff(buy_step.date_step_end, buy_step.date_step_beg)>=0, 0, datediff(buy_step.date_step_end, buy_step.date_step_beg) - city.days_delivery) as Опоздание  
+from city
 join client on client.city_id=city.city_id
 join buy on buy.client_id=client.client_id
 join buy_step on buy_step.buy_id=buy.buy_id
