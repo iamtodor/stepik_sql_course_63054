@@ -231,6 +231,7 @@ select name, sum((datediff(date_last, date_first)+1)*per_diem) as Сумма
 from trip
 group by name
 having count(*) > 3
+order by 2 desc
 
 1.7.2
 create table fine(fine_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30), number_plate VARCHAR(6),
