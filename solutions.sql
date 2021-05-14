@@ -157,7 +157,8 @@ update book set price = 0.9*price
 where amount between 5 and 10
 
 1.5.7
-update book set buy=if(buy>amount, amount, buy)
+update book set buy = if(buy > amount, amount, buy),
+                price = if(buy = 0, price * 0.9, price);
 
 1.5.8
 update book, supply set book.amount=supply.amount+book.amount, book.price=(book.price+supply.price)/2
