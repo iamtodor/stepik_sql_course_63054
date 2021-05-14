@@ -110,7 +110,7 @@ order by price desc
 1.4.3
 select author, title, price
 from book
-where price - (select min(price) from book) <= 150
+where price - (select min(price) from book) < 150
 order by price asc
 
 1.4.4
