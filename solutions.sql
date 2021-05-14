@@ -164,8 +164,13 @@ update book, supply set book.amount=supply.amount+book.amount, book.price=(book.
 where book.title=supply.title
 
 1.5.9
-delete from supply
-where supply.price in (select price from book) and supply.title in (select title from book)
+delete from supply 
+where author in (
+  select author
+  from book
+  group by author
+  having sum(amount) > 10
+)
 
 1.5.10
 create table ordering as
