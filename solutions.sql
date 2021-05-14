@@ -49,8 +49,7 @@ select title, author from book
 where  price between 540.50 and 800 and amount in (2,3,5,7)
 
 1.2.11
-select title, author from book
-where title like '% %' and author like '%С.%'
+select title, author from book where title like "_% _%" and author like "% С.%" 
 
 1.2.12
 select author, title from book
