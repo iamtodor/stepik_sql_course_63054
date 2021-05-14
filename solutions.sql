@@ -272,7 +272,7 @@ where date_payment is null and
 1.7.7
 update fine, payment
 set fine.date_payment=payment.date_payment,
-fine.sum_fine=if(datediff(payment.date_payment, fine.date_violation)-1 <=20, fine.sum_fine/2, fine.sum_fine)
+fine.sum_fine=if(datediff(payment.date_payment, fine.date_violation) <= 20, fine.sum_fine/2, fine.sum_fine)
 where fine.name=payment.name and 
 fine.number_plate=payment.number_plate and 
 fine.violation=payment.violation and  
