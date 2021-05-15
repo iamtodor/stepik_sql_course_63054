@@ -121,10 +121,12 @@ where amount in (select amount from book group by amount having count(amount)=1)
 1.4.5
 select author, title, price 
 from book
-where author in (select author from book
-                group by author
-                having avg(price) > (select avg(price) from book))
-                
+where price < ANY (
+    select MIN(price)
+    from book 
+    group by author
+)
+
 1.4.6
 select title, author, amount, (select max(amount) from book) - amount as Заказ
 from book
