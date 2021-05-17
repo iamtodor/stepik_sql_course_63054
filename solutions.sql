@@ -49,8 +49,7 @@ select title, author from book
 where  price between 540.50 and 800 and amount in (2,3,5,7)
 
 1.2.11
-select title, author from book
-where title like '% %' and author like '%С.%'
+select title, author from book where title like "_% _%" and author like "% С.%" 
 
 1.2.12
 select author, title from book
@@ -111,7 +110,7 @@ order by price desc
 1.4.3
 select author, title, price
 from book
-where price - (select min(price) from book) < 150
+where price - (select min(price) from book) <= 150
 order by price asc
 
 1.4.4
@@ -122,10 +121,12 @@ where amount in (select amount from book group by amount having count(amount)=1)
 1.4.5
 select author, title, price 
 from book
-where author in (select author from book
-                group by author
-                having avg(price) > (select avg(price) from book))
-                
+where price < ANY (
+    select MIN(price)
+    from book 
+    group by author
+)
+
 1.4.6
 select title, author, amount, (select max(amount) from book) - amount as Заказ
 from book
@@ -157,7 +158,8 @@ update book set price = 0.9*price
 where amount between 5 and 10
 
 1.5.7
-update book set buy=if(buy>amount, amount, buy)
+update book set buy = if(buy > amount, amount, buy),
+                price = if(buy = 0, price * 0.9, price);
 
 1.5.8
 update book, supply set book.amount=supply.amount+book.amount, book.price=(book.price+supply.price)/2
