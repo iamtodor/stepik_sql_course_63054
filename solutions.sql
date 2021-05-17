@@ -300,16 +300,17 @@ values
 (4, 'Пастернак Б.Л.')
 
 2.1.8
-create table book(
-    book_id INT PRIMARY KEY AUTO_INCREMENT, 
-    title VARCHAR(30),
-    genre_id int,
-    author_id int,
-    price DECIMAL(8,2),
-    amount int,
-    foreign key (genre_id) references genre (genre_id),
-    foreign key (author_id) references author (author_id)
-    
+CREATE TABLE book (
+      book_id INT PRIMARY KEY AUTO_INCREMENT, 
+      title VARCHAR(50), 
+      author_id INT NOT NULL, 
+      genre_id INT,
+      price DECIMAL(8,2), 
+      amount INT, 
+      FOREIGN KEY (author_id)  REFERENCES author (author_id),
+      FOREIGN KEY (genre_id)  REFERENCES genre (genre_id)
+)
+
 2.1.9
 CREATE TABLE book (
       book_id INT PRIMARY KEY AUTO_INCREMENT, 
