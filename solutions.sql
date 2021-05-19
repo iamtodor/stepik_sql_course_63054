@@ -195,6 +195,7 @@ order by name
 select city, count(*) as Количество
 from trip
 group by city
+order by city
 
 1.6.5
 select city, count(*) as Количество
