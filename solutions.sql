@@ -213,8 +213,10 @@ order by Длительность desc, city desc
 1.6.7
 select name, city, date_first, date_last
 from trip
-order by datediff(date_last, date_first)+1 asc
-limit 1
+where DATEDIFF(date_last, date_first) = (
+    select MIN(DATEDIFF(date_last, date_first))
+    from trip
+)
 
 1.6.8
 select name, city, date_first, date_last
