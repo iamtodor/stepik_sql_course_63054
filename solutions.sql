@@ -394,6 +394,11 @@ join genre on genre.genre_id=pop_genre.genre_id) as genre_name
 on book.genre_id=genre_name.genre_id
 order by title
 
+2.2.9
+select title as Название, author as Автор, book.amount + supply.amount as Количество
+from book join supply
+using(title, price)
+
 2.3.2
 update book 
 inner join author on book.author_id=author.author_id
