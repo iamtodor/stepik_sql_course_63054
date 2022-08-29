@@ -394,6 +394,9 @@ join genre on genre.genre_id=pop_genre.genre_id) as genre_name
 on book.genre_id=genre_name.genre_id
 order by title
 
+2.2.10
+select * from book
+
 2.3.2
 update book 
 inner join author on book.author_id=author.author_id
