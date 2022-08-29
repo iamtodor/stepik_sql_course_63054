@@ -394,6 +394,16 @@ join genre on genre.genre_id=pop_genre.genre_id) as genre_name
 on book.genre_id=genre_name.genre_id
 order by title
 
+2.2.9
+select
+    book.title as Название,
+    author as Автор,
+    book.amount + supply.amount as Количество
+from
+    book
+    join supply on supply.title = book.title
+    and supply.price = book.price
+
 2.2.10
 select * from book
 
