@@ -407,7 +407,6 @@ from
 2.2.10
 select * from book
 
-
 2.3.2
 update book 
 inner join author on book.author_id=author.author_id
