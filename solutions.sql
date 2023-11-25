@@ -356,6 +356,7 @@ where amount is null
 select name_city, name_author, date_add('2020-01-01', interval 'FLOOR(RAND()*365)' day) as Дата
 from author
 cross join city
+order by 1, 3 desc
 
 2.2.5
 select name_genre, title, name_author 
