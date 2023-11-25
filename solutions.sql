@@ -515,7 +515,7 @@ join buy on buy.client_id=client.client_id
 join buy_book on buy.buy_id=buy_book.buy_id
 join book on book.book_id=buy_book.book_id
 where book.author_id=2
-group by namr_client
+group by name_client
 order by name_client
 
 2.4.13
