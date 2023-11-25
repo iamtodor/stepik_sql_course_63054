@@ -461,6 +461,7 @@ inner join buy on client.client_id=buy.client_id
 inner join buy_book on buy.buy_id=buy_book.buy_id
 inner join book on book.book_id=buy_book.book_id
 where client.client_id=1
+order by buy_id, title
 
 2.4.6
 select name_author, title, count(buy_book.book_id) as Количество
