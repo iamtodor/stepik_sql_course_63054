@@ -470,6 +470,7 @@ from author
     on book.author_id=author.author_id
     left join buy_book
     on buy_book.book_id=book.book_id
+	where title is not null
 group by name_author, title
 order by name_author, title
 
